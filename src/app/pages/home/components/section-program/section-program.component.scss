@@ -1,0 +1,63 @@
+section {
+
+  h2 {
+    margin: 0;
+    font-family: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 20px 0;
+
+    .tag {
+      background: #ee7209;
+      color: #fff;
+      font-weight: 700;
+      font-size: 10px;
+      margin: 0;
+      padding: 2px 4px;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+  }
+
+  .card {
+    position: relative;
+
+    height: 140px;
+    width: 100%;
+    border-radius: 12px;
+    background-blend-mode: darken; // mistura preto com a imagem
+
+    &.label {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+    }
+
+    &.content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    padding: 10px;
+    p {
+      margin: 0 0 8px;
+      color: #ee7209;
+      text-transform: lowercase;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+
+}

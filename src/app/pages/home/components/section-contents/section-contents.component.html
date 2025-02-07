@@ -1,0 +1,14 @@
+<section>
+  <div class="title">
+    <h2>conteúdos</h2>
+  </div>
+  <swiper-container appSwiper #swiper [config]="swiperConfig" >
+    @for (item of [].constructor(5); track $index) {
+      <swiper-slide swiper-slide>
+        <div class="card">
+          <div class="content"></div>
+        </div>
+      </swiper-slide>
+    }
+  </swiper-container>
+</section>

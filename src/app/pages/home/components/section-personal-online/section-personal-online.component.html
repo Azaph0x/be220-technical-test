@@ -1,0 +1,27 @@
+<section>
+  <div class="title">
+    <h2>personal online</h2>
+    <ion-icon name="add"/>
+  </div>
+  <swiper-container appSwiper #swiper [config]="swiperConfig" >
+    <swiper-slide>
+      <div class="card content"
+        style="background: url('assets/card.jpeg') center/cover no-repeat, rgba(0, 0, 0, 0.6);"
+      >
+        <div class="content">
+          <ion-icon name="add"/>
+          <p>novo <br> treino</p>
+        </div>
+      </div>
+    </swiper-slide>
+    @for (item of cards; track $index) {
+      <swiper-slide swiper-slide>
+        <div class="card label"
+          style="background: url('assets/card.jpeg') center/cover no-repeat, rgba(0, 0, 0, 0.6);"
+        >
+          <h2>{{ item.title }}</h2>
+        </div>
+      </swiper-slide>
+    }
+  </swiper-container>
+</section>

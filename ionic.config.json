@@ -1,5 +1,7 @@
 {
   "name": "be220-technical-test",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

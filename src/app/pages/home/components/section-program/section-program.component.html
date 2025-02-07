@@ -1,0 +1,21 @@
+<section>
+  <div class="title">
+    <h2>programas</h2>
+    <div class="tag">novo</div>
+  </div>
+  <swiper-container appSwiper #swiper [config]="swiperConfig" >
+    @for (item of cards; track $index) {
+      <swiper-slide swiper-slide>
+        <div class="card label"
+          [ngStyle]="{'background': getImage(item)}"
+          style="background: url('assets/card.jpeg') center/cover no-repeat, rgba(0, 0, 0, 0.6);"
+        >
+        @if (item.isActive) {
+          <p>continuar treinando</p>
+        }
+        <h2>{{ item.title }}</h2>
+        </div>
+      </swiper-slide>
+    }
+  </swiper-container>
+</section>

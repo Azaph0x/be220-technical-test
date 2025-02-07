@@ -1,0 +1,31 @@
+<ion-header collapse="fade">
+  <div class="wrapper">
+    <header>
+      <ion-menu-button></ion-menu-button>
+      <ion-img class="logo" src="assets/logo.png" />
+      <div class="notifications">
+        <ion-icon name="notifications" />
+        <div class="badge"></div>
+      </div>
+    </header>
+
+    <div class="user">
+      <ion-img class="profile" src="assets/icon-user.jpg"></ion-img>
+      <div class="content">
+        <h4>João Carlos</h4>
+        <p [ngStyle]="{'color': levelColor}">Nível Roxo</p>
+      </div>
+    </div>
+
+    <div class="items">
+      <div class="item">
+        <ion-icon name="accessibility" />
+        <p>Meu corpo</p>
+      </div>
+      <div class="item">
+        <ion-icon name="trophy"></ion-icon>
+        <p>Objetivos e conquistas</p>
+      </div>
+    </div>
+  </div>
+</ion-header>
