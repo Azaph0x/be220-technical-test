@@ -1,4 +1,6 @@
 section {
+  opacity: .3;
+  position: relative;
   h2 {
     margin: 0;
     font-family: 20px;
@@ -11,7 +13,7 @@ section {
     align-items: center;
     gap: 10px;
 
-    margin: 20px 0;
+    margin: 40px 0 20px;
   }
 
   .card {
@@ -20,15 +22,14 @@ section {
     height: 140px;
     width: 100%;
     border-radius: 12px;
-    background-blend-mode: darken; 
+    background-blend-mode: darken;
 
-    border: 1px solid #fff;
+    border: 1px solid var(--secondary-color);
     display: flex;
     align-items: center;
     padding-left: 40px;
 
-    .content { background-color: #ee7209; border-radius: 4px; width: 60px; height: 60px;}
-
+    .content { background-color: var(--primary-color); border-radius: 4px; width: 60px; height: 60px;}
   }
 
 }

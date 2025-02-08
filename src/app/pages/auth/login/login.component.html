@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-img class="logo" src="assets/logo.png" />
+  <h2>Bem-vindo!</h2>
+  <form [formGroup]="form">
+    <custom-input
+      [label]="'Email'"
+      placeholder="Digite aqui"
+      type="email"
+      [controlForm]="getControl('email')"
+    />
+    <custom-input
+      [label]="'Senha'"
+      placeholder="Digite aqui"
+      type="password"
+      [controlForm]="getControl('password')"
+    />
+    <ion-button class="btn" (click)="submit()">Entrar</ion-button>
+  </form>
+  <a>Não tem conta? <strong>Crie uma</strong></a>
+</ion-content>
