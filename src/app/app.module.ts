@@ -11,10 +11,12 @@ import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { FirestoreModule, getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AuthService } from './services/auth/auth.service';
 import { AuthFirebaseService } from './services/auth/auth-firebase.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { initializeApp } from 'firebase/app';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 register();
 
@@ -26,10 +28,13 @@ register();
       mode: 'ios'
     }),
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    // FirestoreModule
   ],
   providers: [
+    provideFirebaseApp( () => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: AuthService, useClass: AuthFirebaseService },
     provideEnvironmentNgxMask()

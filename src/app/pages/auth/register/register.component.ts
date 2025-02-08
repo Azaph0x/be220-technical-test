@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
+import { Router } from 'express';
+import { tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { getControlForm } from 'src/app/shared/utils';
 
@@ -20,7 +23,8 @@ export class RegisterComponent  implements OnInit {
   })
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit(
@@ -31,7 +35,17 @@ export class RegisterComponent  implements OnInit {
   submit() {
     if(this.form.invalid) return;
     const { email, password } = this.form.value;
-    this.authService.register(email, password).subscribe()
+    this.authService.register(email, password, {
+      ...this.form.value
+    })
+    .pipe(
+      tap((r) => {
+        this.navCtrl.navigateForward(['home'])
+      })
+    )
+    .subscribe()
   }
+
+  login() { this.navCtrl.navigateForward('login'); }
 
 }
