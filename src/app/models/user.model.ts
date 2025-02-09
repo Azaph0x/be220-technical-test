@@ -1,10 +1,12 @@
+import { Levels } from "./levels.model";
+
 export type User = {
-  uid?: string;
+  userId?: string;
   email: string;
   name: string;
   birthDate: string;
   phone: string;
   createdAt: string;
   updatedAt: string;
-  level: number;
+  level: Levels;
 }

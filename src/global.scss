@@ -47,6 +47,9 @@
   width: 100%;
   --background-activated: red !important;
   --background-activated-opacity: .2;
+  --ripple-color: transparent;
+  --background-focused: transparent;
+  --background-hover: transparent;
 }
 
 .custom-toast {

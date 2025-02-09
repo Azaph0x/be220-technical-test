@@ -4,6 +4,7 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicMaskDirective } from './directives/ionic-mask.directive';
+import { MenuSplitContentComponent } from './layout/menu-split-content/menu-split-content.component';
 
 
 
@@ -15,11 +16,13 @@ import { IonicMaskDirective } from './directives/ionic-mask.directive';
   ],
   declarations: [
     CustomInputComponent,
-    IonicMaskDirective
+    IonicMaskDirective,
+    MenuSplitContentComponent
   ],
   exports: [
     CustomInputComponent,
-    IonicMaskDirective
+    IonicMaskDirective,
+    MenuSplitContentComponent
   ]
 })
 export class SharedModule { }

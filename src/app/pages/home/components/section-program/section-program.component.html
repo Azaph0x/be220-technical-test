@@ -6,18 +6,25 @@
   <div class="slide">
     <div class="shadow"></div>
     <swiper-container appSwiper #swiper [config]="swiperConfig" >
-      @for (item of cards; track $index) {
-        <swiper-slide swiper-slide>
-          <div class="card label"
-            [ngStyle]="{'background': getImage(item)}"
-            style="background: url('assets/card.jpeg') center/cover no-repeat, rgba(0, 0, 0, 0.6);"
-          >
-          @if (item.isActive) {
-            <p>continuar treinando</p>
-          }
-          <h2>{{ item.title }}</h2>
-          </div>
+      @if (loading) {
+        <swiper-slide swiper-slide *ngFor="let item of [].constructor(3)">
+          <ion-skeleton-text [animated]="true" style="width: 100%; height: 140px;"></ion-skeleton-text>
         </swiper-slide>
+      } @else {
+        @for (item of programs; track $index) {
+          <swiper-slide swiper-slide>
+            <div class="card label"
+              [ngStyle]="{'background': getImage(item)}"
+              style="background: url('assets/card.jpeg') center/cover no-repeat, rgba(0, 0, 0, 0.6);"
+              (click)="initViewed(item)"
+            >
+            @if (isViewed(item)) {
+              <p>continuar treinando</p>
+            }
+            <h2>{{ item.name }}</h2>
+            </div>
+          </swiper-slide>
+        }
       }
     </swiper-container>
   </div>

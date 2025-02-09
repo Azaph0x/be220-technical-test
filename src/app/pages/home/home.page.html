@@ -1,6 +1,11 @@
-<home-header />
-<ion-content [fullscreen]="true">
-  <section-personal-online />
-  <section-program />
-  <section-contents />
-</ion-content>
+<home-header [loading]="loading" [userData]="userData" />
+@if (!loading) {
+  <ion-content [fullscreen]="true">
+    <section-personal-online />
+    <section-program />
+    <section-contents />
+  </ion-content>
+} @else {
+  <ion-content [fullscreen]="true">
+  </ion-content>
+}

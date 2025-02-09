@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { concat, finalize, tap } from 'rxjs';
+import { TrainingProgram, TrainingProgramProgress } from 'src/app/models/training-program.model';
+import { TrainingProgramService } from 'src/app/services/training_program/training-program.service';
 import { SwiperOptions } from 'swiper/types';
 
 @Component({
@@ -9,7 +12,14 @@ import { SwiperOptions } from 'swiper/types';
 })
 export class SectionProgramComponent  implements OnInit {
 
-  constructor() { }
+  constructor(
+    private trainingProgramService: TrainingProgramService
+  ) { }
+
+  loading: boolean = true;
+
+  programs: TrainingProgram[] = [];
+  programsProgress: TrainingProgramProgress[] = [];
 
   swiperConfig: SwiperOptions = {
     breakpoints: {
@@ -27,26 +37,48 @@ export class SectionProgramComponent  implements OnInit {
       },
     }
   }
-  ngOnInit() {}
 
-  cards: any = [
-    {
-      title: 'levamento de peso',
-      isActive: true,
-      image: 'assets/card.jpeg'
-    },
-    {
-      title: 'yoga experience',
-      isActive: false,
-      image: 'assets/card.jpeg'
-    }
-   ]
+  initViewed(item: TrainingProgram) {
+    if(this.isViewed(item)) return;
+    this.trainingProgramService.initUserProgressProgram(item.uid).pipe(
+      tap(() => this.loadProgresses().subscribe())
+    ).subscribe()
+  }
 
-   getImage(item: any) {
+  loadProgresses() {
+    return this.trainingProgramService.getUserProgressPrograms().pipe(
+      tap((r) => this.programsProgress = r)
+    )
+  }
+
+  loadPrograms() {
+    return this.trainingProgramService.getPrograms().pipe(
+      tap((r) => {
+        this.programs = r;
+        this.loading = false;
+      })
+    )
+  }
+  ngOnInit() {
+    concat(
+      this.loadPrograms(),
+      this.loadProgresses()
+    ).pipe(
+      finalize(() => this.loading = false)
+    ).subscribe()
+
+    this.trainingProgramService.getUserProgressPrograms().pipe(tap((r) => console.log(r))).subscribe()
+  }
+
+   getImage(item: TrainingProgram) {
     let url = `url('${item.image}') center/cover no-repeat`;
-    if(!item.isActive) url += `, rgba(0, 0, 0, 0.6)`;
+    if(!item.activated) url += `, rgba(0, 0, 0, 0.6)`;
 
     return url;
    }
+
+  isViewed(item: TrainingProgram) {
+    return !!this.programsProgress.find(p => p.trainingProgramUid == item.uid)
+  }
 
 }

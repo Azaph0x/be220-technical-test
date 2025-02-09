@@ -17,6 +17,11 @@ import { AuthFirebaseService } from './services/auth/auth-firebase.service';
 import { initializeApp } from 'firebase/app';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { SharedModule } from './shared/shared.module';
+import { TrainingProgramService } from './services/training_program/training-program.service';
+import { TrainingProgramFirebaseService } from './services/training_program/training-program-firebase.service';
+import { UserService } from './services/user/user.service';
+import { UserFirebaseService } from './services/user/user-firebase.service';
 
 register();
 
@@ -28,7 +33,7 @@ register();
       mode: 'ios'
     }),
     AppRoutingModule,
-    // FirestoreModule
+    SharedModule
   ],
   providers: [
     provideFirebaseApp( () => initializeApp(environment.firebaseConfig)),
@@ -37,6 +42,8 @@ register();
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: AuthService, useClass: AuthFirebaseService },
+    { provide: TrainingProgramService, useClass: TrainingProgramFirebaseService },
+    { provide: UserService, useClass: UserFirebaseService },
     provideEnvironmentNgxMask()
   ],
   bootstrap: [AppComponent],

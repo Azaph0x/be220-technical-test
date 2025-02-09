@@ -12,8 +12,13 @@
     <div class="user">
       <ion-img class="profile" src="assets/icon-user.jpg"></ion-img>
       <div class="content">
-        <h4>João Carlos</h4>
-        <p [ngStyle]="{'color': levelColor}">Nível Roxo</p>
+        @if (loading == true || !userData) {
+          <ion-skeleton-text [animated]="true" style="width: 100px; height: 20px;"></ion-skeleton-text>
+          <ion-skeleton-text [animated]="true" style="width: 40px; height: 20px;"></ion-skeleton-text>
+        } @else {
+          <h4>{{ userData.name }}</h4>
+          <p [ngStyle]="{'color': levelColor}">Nível {{ levelName }}</p>
+        }
       </div>
     </div>
 

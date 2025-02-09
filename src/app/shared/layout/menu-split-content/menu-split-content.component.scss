@@ -1,0 +1,41 @@
+ion-content {
+  height: 100vh;
+  --background: var(--background-color);
+  &::part(scroll) {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 32px;
+  }
+
+  ion-img {
+    align-self: center;
+    &::part(image) {
+      width: 140px;
+    }
+  }
+
+  .items {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      ion-icon {
+        color: var(--primary-color);
+        font-size: 32px;
+      }
+      p {
+        margin: 0;
+        font-weight: 500;
+        color: var(--secondary-color);
+        font-size: 18px;
+      }
+    }
+  }
+}

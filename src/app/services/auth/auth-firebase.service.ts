@@ -6,7 +6,7 @@ import { ToastService } from '../toast.service';
 import { User } from 'src/app/models/user.model';
 import {doc, Firestore, getDoc, setDoc} from '@angular/fire/firestore';
 import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, user,  authState } from '@angular/fire/auth';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, User as userAuth } from 'firebase/auth';
 import { STORAGE_KEYS } from 'src/app/models/keys';
 
 @Injectable()
@@ -23,6 +23,7 @@ export class AuthFirebaseService extends AuthService {
     super();
     onAuthStateChanged(this.auth, (user) => {
       this.logged = !!user;
+      this.user = user;
       if(!this.logged) {
         localStorage.removeItem(STORAGE_KEYS.USER);
       }
@@ -41,7 +42,20 @@ export class AuthFirebaseService extends AuthService {
         this.toastService.create('Email ou senha incorreto')
         return throwError(e);
       }),
-      tap((r) => console.log(r)),
+      switchMap((r) => {
+        return from(getDoc(doc(this.firestore, "users", r.user.uid))).pipe(
+          catchError((e) => {
+            this.toastService.create('Ops..., ocorreu um erro ao carregar seus dados')
+            return throwError(e);
+          }),
+          tap((result) => {
+            if(result.exists()) {
+              localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(result.data()))
+              console.log(result.data());
+            }
+          })
+        )
+      }),
       finalize(() => this.loadingService.dismiss())
     )
   }
@@ -65,7 +79,7 @@ export class AuthFirebaseService extends AuthService {
       switchMap((r) => {
         return from(setDoc(doc(this.firestore, 'users', r.user!.uid), {
           ...userdata,
-          uid: r.user!.uid
+          userId: r.user!.uid
         })).pipe(
           catchError((e) => {
             this.toastService.create('Ops..., ocorreu um erro ao cadastrar os dados do usuario')
@@ -74,7 +88,7 @@ export class AuthFirebaseService extends AuthService {
           tap((result) => {
             localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify({
               ...userdata,
-              uid: r.user!.uid
+              userId: r.user!.uid
             }))
             this.toastService.create('Usuario cadastrado com sucesso!');
           })
@@ -89,7 +103,9 @@ export class AuthFirebaseService extends AuthService {
   }
 
   logout(): Observable<any> {
-    return from(signOut(this.auth))
+    return from(signOut(this.auth)).pipe(
+      tap(() => localStorage.removeItem(STORAGE_KEYS.USER))
+    )
   }
 
 }

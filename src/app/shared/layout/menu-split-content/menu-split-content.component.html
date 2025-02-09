@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-img class="logo" src="assets/logo.png" />
+
+  <div class="items">
+    @for (item of items; track $index) {
+      <div class="item" (click)="item.action()">
+        <ion-icon name="{{ item.icon }}"></ion-icon>
+        <p>{{ item.name }}</p>
+      </div>
+    }
+    <div class="item" style="margin-top: auto;" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      <p>Sair</p>
+    </div>
+  </div>
+</ion-content>
