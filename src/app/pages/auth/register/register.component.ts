@@ -34,9 +34,10 @@ export class RegisterComponent  implements OnInit {
 
   submit() {
     if(this.form.invalid) return;
-    const { email, password } = this.form.value;
+    const { email, password, ...userdata } = this.form.value;
     this.authService.register(email, password, {
-      ...this.form.value
+      ...userdata,
+      email
     })
     .pipe(
       tap((r) => {

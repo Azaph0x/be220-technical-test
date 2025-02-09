@@ -1,0 +1,36 @@
+ion-content {
+  --background: var(--background-color);
+  &::part(scroll) {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .exercises {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      h2 {
+        color: var(--primary-color);
+        margin: 0;
+      }
+      .exercis {
+        padding-left: 20px;
+
+        p {
+          margin: 0;
+          &.title {
+            font-weight: 600;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}

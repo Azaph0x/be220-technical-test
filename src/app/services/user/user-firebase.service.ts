@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { doc, getDoc } from 'firebase/firestore';
-import { Auth, user } from '@angular/fire/auth';
+import { Auth } from '@angular/fire/auth';
 import { ToastService } from '../toast.service';
 
 @Injectable()
@@ -33,4 +33,5 @@ export class UserFirebaseService extends UserService {
         })
       )
   }
+
 }

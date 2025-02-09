@@ -1,0 +1,24 @@
+.card {
+  height: 140px;
+  width: 100%;
+  border-radius: 12px;
+  background-blend-mode: darken; // mistura preto com a imagem
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  padding: 10px;
+  p {
+    margin: 0 0 8px;
+    color: var(--primary-color);
+    text-transform: lowercase;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin: 0;
+  }
+}

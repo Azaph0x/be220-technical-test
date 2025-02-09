@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicMaskDirective } from './directives/ionic-mask.directive';
 import { MenuSplitContentComponent } from './layout/menu-split-content/menu-split-content.component';
+import { HeaderComponent } from './components/header/header.component';
+import { CardProgramComponent } from './components/card-program/card-program.component';
 
 
 
@@ -17,12 +19,16 @@ import { MenuSplitContentComponent } from './layout/menu-split-content/menu-spli
   declarations: [
     CustomInputComponent,
     IonicMaskDirective,
-    MenuSplitContentComponent
+    MenuSplitContentComponent,
+    HeaderComponent,
+    CardProgramComponent
   ],
   exports: [
     CustomInputComponent,
     IonicMaskDirective,
-    MenuSplitContentComponent
+    MenuSplitContentComponent,
+    HeaderComponent,
+    CardProgramComponent
   ]
 })
 export class SharedModule { }

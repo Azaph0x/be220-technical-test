@@ -1,0 +1,8 @@
+<usina-header [title]="'Programas'" [routeBack]="['home']" />
+<ion-content>
+  <div class="programs">
+    @for (item of programs; track $index) {
+      <card-program [item]="item" [progresses]="programsProgress" />
+    }
+  </div>
+</ion-content>

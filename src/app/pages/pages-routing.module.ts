@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomePageModule),
     canActivate: [authGuard]
+  },
+  {
+    path: 'program',
+    loadChildren: () => import('./program/program.module').then( m => m.ProgramPageModule)
   }
 ];
 

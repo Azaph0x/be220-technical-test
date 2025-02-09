@@ -1,0 +1,9 @@
+<div class="card"
+  [ngStyle]="{'background': getImage(item)}"
+  (click)="view()"
+>
+    @if (isViewed(item)) {
+      <p>continuar treinando</p>
+    }
+    <h2>{{ item.name }}</h2>
+</div>

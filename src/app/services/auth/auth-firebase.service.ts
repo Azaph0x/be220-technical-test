@@ -68,6 +68,7 @@ export class AuthFirebaseService extends AuthService {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     }
+
     return from(createUserWithEmailAndPassword(this.auth, email, password))
     .pipe(
       catchError((e) => {

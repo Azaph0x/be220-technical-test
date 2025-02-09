@@ -1,0 +1,14 @@
+ion-content {
+  --background: var(--background-color);
+  &::part(scroll) {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .programs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

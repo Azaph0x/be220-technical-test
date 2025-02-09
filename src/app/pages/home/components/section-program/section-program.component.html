@@ -1,5 +1,5 @@
 <section>
-  <div class="title">
+  <div class="title" (click)="listPrograms()">
     <h2>programas</h2>
     <div class="tag">novo</div>
   </div>
@@ -13,16 +13,7 @@
       } @else {
         @for (item of programs; track $index) {
           <swiper-slide swiper-slide>
-            <div class="card label"
-              [ngStyle]="{'background': getImage(item)}"
-              style="background: url('assets/card.jpeg') center/cover no-repeat, rgba(0, 0, 0, 0.6);"
-              (click)="initViewed(item)"
-            >
-            @if (isViewed(item)) {
-              <p>continuar treinando</p>
-            }
-            <h2>{{ item.name }}</h2>
-            </div>
+            <card-program style="width: 100%;" [item]="item" [progresses]="programsProgress" />
           </swiper-slide>
         }
       }

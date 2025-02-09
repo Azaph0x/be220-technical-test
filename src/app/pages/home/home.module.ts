@@ -12,6 +12,7 @@ import { SectionPersonalOnlineComponent } from './components/section-personal-on
 import { SwiperDirective } from 'src/app/shared/directives/swiper.directive';
 import { SectionProgramComponent } from './components/section-program/section-program.component';
 import { SectionContentsComponent } from './components/section-contents/section-contents.component';
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -19,8 +20,9 @@ import { SectionContentsComponent } from './components/section-contents/section-
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    SwiperDirective
-  ],
+    SwiperDirective,
+    SharedModule
+],
   declarations: [
     HomePage,
     HeaderComponent,

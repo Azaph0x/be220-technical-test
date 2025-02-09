@@ -1,0 +1,43 @@
+<usina-header [title]="'Programa'" [routeBack]="['home']" />
+<ion-content>
+  @if (loading) {
+    <ion-skeleton-text style="width: 100%; min-height: 140px;"></ion-skeleton-text>
+  }@else {
+    <card-program *ngIf="program" [item]="program" [progresses]="[]" />
+  }
+
+  <div class="exercises">
+    @if (loading) {
+      @for (item of [].constructor(4); track $index) {
+        <div class="item">
+          <h2><ion-skeleton-text style="width: 80px; height: 20px;"></ion-skeleton-text></h2>
+
+          @for (itemExercis of [].constructor(4); track $index) {
+            <div class="exercis">
+              <p class="title">
+                <ion-skeleton-text style="width: 80px; height: 20px;"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text style="width: 140px; height: 20px;"></ion-skeleton-text>
+              </p>
+            </div>
+          }
+        </div>
+      }
+    } @else {
+      @for (item of workout_days; track $index) {
+        <div class="item">
+          <h2>{{ item.day }}</h2>
+
+          @for (itemExercis of item.exercises; track $index) {
+            <div class="exercis">
+              <p class="title">{{ itemExercis.name }}</p>
+              <p>{{ itemExercis.sets }}x{{ itemExercis.reps }} - {{ itemExercis.rest_time }}</p>
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+  <ion-button (click)="initProgram()" class="btn" style="margin-top: auto;">Iniciar programa</ion-button>
+</ion-content>
